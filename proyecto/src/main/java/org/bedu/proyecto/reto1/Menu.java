@@ -6,21 +6,23 @@ import java.util.Scanner;
 public class Menu {
     Scanner sc;
 
-    public Menu() {
+    public Menu() throws Exception {
         sc = new Scanner(System.in);
         Interviewer.data = new ArrayList<Interviewer>();
 
         showMainMenu();
     }
 
-    public void showMainMenu() {
+    public void showMainMenu() throws Exception {
         int option = 0;
 
-        while (option != 3) {
+        while (option != 5) {
             System.out.println("Seleccione la operacion a realizar:");
             System.out.println("1. Dar de alta un entrevistador");
             System.out.println("2. Consultar un entrevistador");
-            System.out.println("3. Salir");
+            System.out.println("3. Modificar un entrevistador");
+            System.out.println("4. Eliminar un entrevistador");
+            System.out.println("5. Salir");
 
             option = sc.nextInt();
             sc.nextLine();
@@ -32,12 +34,20 @@ public class Menu {
                 case 2:
                     searchInterviewer();
                     break;
+                case 3:
+                    modifyInterviewer();
+                    break;
+                case 4:
+                    deleteInterviewer();
+                    break;
             }
         }
         ;
 
         System.out.println("Programa terminado");
     }
+
+
 
     public void addInterviewer() {
         System.out.println("Ingrese el nombre del entrevistador: ");
@@ -47,7 +57,7 @@ public class Menu {
         System.out.println("Ingrese el email del entrevistador: ");
         String email = sc.nextLine();
         System.out.println("El entrevistador se encuentra activo? (1=Si/2=No)");
-        Boolean isActive = sc.nextInt() == 1;
+        Boolean isActive = sc.nextInt()==1;
         sc.nextLine();
 
         Interviewer interviewer = new Interviewer(name, lastName, email, isActive);
@@ -65,12 +75,73 @@ public class Menu {
         if (interviewer != null) {
             System.out.println("Entrevistador encontrado:");
             System.out.println(interviewer.toString());
+
         } else {
             System.out.println("Entrevistador no encontrado");
         }
     }
 
-    public static void main(String[] args) {
+    private void modifyInterviewer() {
+        System.out.println("Ingrese el email para encontrar el entrevistador a modificar:");
+        String email = sc.nextLine();
+        Interviewer interviewer = Interviewer.getByEmail(email);
+
+        if (interviewer != null) {
+            String correo = interviewer.email;
+            String nombre = interviewer.name;
+            String apellido = interviewer.lastName;
+            Boolean activo;
+            System.out.println("Entrevistador encontrado PULSA ENTER PARA MANTENER IGUAL:");
+
+            System.out.println("Ingrese el nombre del entrevistador: ");
+            String name = sc.nextLine();
+            if (name.equals("")) {
+                name = nombre;
+            }
+
+            System.out.println("Ingrese el apellido del entrevistador: ");
+            String lastName = sc.nextLine();
+            if (lastName.equals("")) {
+                lastName = apellido;
+            }
+
+            System.out.println("Ingrese el email del entrevistador: ");
+            email = sc.nextLine();
+            if (email.equals("")) {
+                email = correo;
+            }
+
+            System.out.println("El entrevistador se encuentra activo? (1=Si/2=No)");
+            activo = sc.nextInt() == 1;
+            boolean isActive = interviewer.isActive=activo;
+            sc.nextLine();
+
+            interviewer.save(name,lastName,email,isActive);
+        } else {
+            System.out.println("Entrevistador no encontrado");
+        }
+    }
+
+    public void deleteInterviewer() throws Exception{
+        System.out.println("Ingrese el email del entrevistador a ELIMINAR:");
+        String email = sc.nextLine();
+
+        Interviewer interviewer = Interviewer.getByEmail(email);
+
+        if (interviewer != null) {
+            try {
+                System.out.println("Entrevistador ELIMINADO:");
+                interviewer.delete();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        } else {
+            System.out.println("Entrevistador no encontrado");
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
         new Menu();
     }
 }
