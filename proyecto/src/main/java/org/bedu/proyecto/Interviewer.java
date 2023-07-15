@@ -1,4 +1,4 @@
-package org.bedu.proyecto.reto1;
+package org.bedu.proyecto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -77,7 +77,8 @@ public class Interviewer implements Serializable {
 
 
     public void delete() {
-       data.remove(this);
+        data.remove(this);
 
     }
 }
+

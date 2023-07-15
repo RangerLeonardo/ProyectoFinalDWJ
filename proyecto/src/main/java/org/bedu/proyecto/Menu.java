@@ -1,4 +1,4 @@
-package org.bedu.proyecto.reto1;
+package org.bedu.proyecto;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -90,7 +90,6 @@ public class Menu {
             String correo = interviewer.email;
             String nombre = interviewer.name;
             String apellido = interviewer.lastName;
-            Boolean activo;
             System.out.println("Entrevistador encontrado PULSA ENTER PARA MANTENER IGUAL:");
 
             System.out.println("Ingrese el nombre del entrevistador: ");
@@ -112,8 +111,8 @@ public class Menu {
             }
 
             System.out.println("El entrevistador se encuentra activo? (1=Si/2=No)");
-            activo = sc.nextInt() == 1;
-            boolean isActive = interviewer.isActive=activo;
+            Boolean isActive = sc.nextInt() == 1;
+
             sc.nextLine();
 
             interviewer.save(name,lastName,email,isActive);
@@ -145,3 +144,4 @@ public class Menu {
         new Menu();
     }
 }
+
