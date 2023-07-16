@@ -87,32 +87,15 @@ public class Menu {
         Interviewer interviewer = Interviewer.getByEmail(email);
 
         if (interviewer != null) {
-            String correo = interviewer.email;
-            String nombre = interviewer.name;
-            String apellido = interviewer.lastName;
             System.out.println("Entrevistador encontrado PULSA ENTER PARA MANTENER IGUAL:");
-
             System.out.println("Ingrese el nombre del entrevistador: ");
             String name = sc.nextLine();
-            if (name.equals("")) {
-                name = nombre;
-            }
-
             System.out.println("Ingrese el apellido del entrevistador: ");
             String lastName = sc.nextLine();
-            if (lastName.equals("")) {
-                lastName = apellido;
-            }
-
             System.out.println("Ingrese el email del entrevistador: ");
             email = sc.nextLine();
-            if (email.equals("")) {
-                email = correo;
-            }
-
             System.out.println("El entrevistador se encuentra activo? (1=Si/2=No)");
             Boolean isActive = sc.nextInt() == 1;
-
             sc.nextLine();
 
             interviewer.save(name,lastName,email,isActive);
@@ -126,7 +109,6 @@ public class Menu {
         String email = sc.nextLine();
 
         Interviewer interviewer = Interviewer.getByEmail(email);
-
         if (interviewer != null) {
             try {
                 System.out.println("Entrevistador ELIMINADO:");

@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public class Interviewer implements Serializable {
     public static ArrayList<Interviewer> data;
 
-    int id;
-    String name;
-    String lastName;
-    String email;
-    Boolean isActive;
+    private int id;
+    private String name;
+    private String lastName;
+    private String email;
+    private Boolean isActive;
 
     public Interviewer(
             String name,
@@ -79,6 +79,46 @@ public class Interviewer implements Serializable {
     public void delete() {
         data.remove(this);
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }
 

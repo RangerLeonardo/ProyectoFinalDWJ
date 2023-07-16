@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Discipline {
 
-    public ArrayList<Discipline> data;
-    int id;
-    String name;
-    String slug;
-    String description;
+    public static ArrayList<Discipline> data;
+    private int id;
+    private String name;
+    private String slug;
+    private String description;
 
-    public Discipline(int id, String name, String slug, String description) {
+    public Discipline(String name, String slug, String description) {
         this.id = data.size()+1;
         this.name = name;
         this.slug = slug;
@@ -24,9 +24,8 @@ public class Discipline {
 
     public void save(
             String name,
-            String lastName,
-            String email,
-            Boolean isActive
+            String slug,
+            String description
     ) {
         try {
             this.delete();
@@ -35,19 +34,17 @@ public class Discipline {
             return;
         }
 
-//
-//        if (!name.equals(""))
-//            this.name = name;
-//
-//        if (!lastName.equals(""))
-//            this.lastName = lastName;
-//
-//        if (!email.equals(""))
-//            this.email = email;
-//
-//        this.isActive = isActive;
-//
-//        data.add(this);
+
+        if (!name.equals(""))
+            this.name = name;
+
+        if (!slug.equals(""))
+            this.slug = slug;
+
+        if (!description.equals(""))
+            this.description = description;
+
+        data.add(this);
     }
 
     public void delete() {
@@ -55,5 +52,35 @@ public class Discipline {
 
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

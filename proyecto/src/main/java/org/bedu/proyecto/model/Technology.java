@@ -1,8 +1,9 @@
 package org.bedu.proyecto.model;
 
-public class Technology {
-    int id;
-    String name;
-    String slug;
-    String description;
+import java.util.ArrayList;
+
+public class Technology  extends  Discipline{
+    public Technology(String name, String slug, String description){
+        super(name, slug, description);
+    }
 }
